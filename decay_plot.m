@@ -14,7 +14,7 @@ dataDir='/home/antoine/Documents/LiME/';
 cd([dataDir]);
 
 % Open the file for reading
-fid = fopen("run_20230117.txt", "r");
+fid = fopen("data/run_20230117.txt", "r");
 vOut = [];
 % Read data from the file
 while (!feof(fid))
@@ -26,7 +26,7 @@ endwhile
 fclose(fid);
 
 tOut=vOut*tacFactor_A+tacFactor_B;
-nbClass=19;  % Nombre de classes de la distribution
+nbClass=21;  % Nombre de classes de la distribution
 [tDis,tClass]=hist(tOut,nbClass);
 histo=figure;
 hist(tOut,nbClass);
@@ -35,7 +35,7 @@ xlabel('Decay time (\mus)','interpreter','tex','fontsize',16);
 ylabel(['Decay number (per ' num2str(totalTime*1e3/nbClass) ' ns bins)'],'fontsize',16);
 legend([num2str(length(tOut)) ' entries'])
 leg=get(legend);
-debut=2;
+debut=3;
 fin=length(tDis)-1;
 decay = @(x,xdata)x(1)*exp(x(2)*xdata);
 x0 = [100,-1];
